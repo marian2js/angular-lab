@@ -25,20 +25,19 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div class="container" ng-controller="AppCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li class="active"><a ng-href="/">Home</a></li>
+          <li><a ng-href="/#/login">Login with GitHub</a></li>
         </ul>
-        <h3 class="text-muted">lab</h3>
+        <h3 class="text-muted">GitHub Stars</h3>
       </div>
 
-      <div ng-view=""></div>
+      <div ng-view></div>
 
       <div class="footer">
-        <p>♥ from the Yeoman team</p>
+        <p><a href="https://github.com/marian2js/angular-lab">GitHub Project</a></p>
       </div>
     </div>
 
@@ -71,6 +70,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
 </body>
