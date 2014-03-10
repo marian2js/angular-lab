@@ -29,7 +29,8 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ng-href="/">Home</a></li>
-          <li><a ng-href="/#/login">Login with GitHub</a></li>
+          <li><a href="#" ng-click="login()" ng-hide="isLogged()">Login with GitHub</a></li>
+          <li><a href="#" ng-click="logout()" ng-show="isLogged()">Logout</a></li>
         </ul>
         <h3 class="text-muted">GitHub Stars</h3>
       </div>
@@ -70,6 +71,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/services/GitHub.js"></script>
         <script src="scripts/controllers/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
