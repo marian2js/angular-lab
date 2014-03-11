@@ -31,6 +31,9 @@
         <td>
           {{ repo.contributors ? repo.contributors.length : 'Loading...' }}<span ng-show="repo.contributors.full">+</span>
         </td>
+        <td>
+          <a ng-href="/#/repo/{{ repo.owner.login }}/{{ repo.name }}">More Info</a>
+        </td>
       </tr>
       </tbody>
     </table>

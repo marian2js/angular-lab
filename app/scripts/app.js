@@ -16,6 +16,10 @@ angular.module('labApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/repo/:owner/:name', {
+        templateUrl: 'views/repo.html',
+        controller: 'RepoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
