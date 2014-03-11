@@ -1,16 +1,38 @@
 <div ng-init="loadRepositories()">
   <div ng-show="user">
     Welcome <a ng-href="{{ user.html_url }}">{{ user.name }}</a>!
+    <div class="pull-right" ng-show="repositories.length">
+      <input type="text" ng-model="search.name" class="form-control" placeholder="Search...">
+    </div>
   </div>
   <hr>
 
   <div class="row marketing">
     <div ng-show="loading.repos">Loading...</div>
+    <div ng-show="repositories.length">You have <strong>{{ repositories.length }}</strong> repositories starred!</div>
+    <hr/>
 
-    <div class="panel panel-info" ng-repeat="repo in repositories">
-      <div class="panel-body">
-        {{ repo.name }}
-      </div>
-    </div>
+    <table class="table table-striped" ng-show="repositories.length">
+      <thead>
+      <tr>
+        <th>Repository</th>
+        <th>Watchers</th>
+        <th>Forks</th>
+        <th>Contributors</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="repo in repositories | filter:search">
+        <td>
+          <a ng-href="{{ repo.svn_url }}" target="_blank">{{ repo.name }}</a>
+        </td>
+        <td>{{ repo.watchers }}</td>
+        <td>{{ repo.forks }}</td>
+        <td>
+          {{ repo.contributors ? repo.contributors.length : 'Loading...' }}<span ng-show="repo.contributors.full">+</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
