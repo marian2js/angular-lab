@@ -6,6 +6,14 @@ var _ = require('underscore');
 var app = express();
 var config = JSON.parse(fs.readFileSync('config.json'));
 
+app.use(express.logger());
+
+// Cross-origin resource sharing //
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 app.all('/api/*', function(req, res) {
   proxy(req, res, 'https://api.github.com/');
@@ -24,7 +32,7 @@ app.all('/login/*', function (req, res) {
  */
 var proxy = function (req, res, url) {
   var options = {
-    url: url + req.url,
+    url: url + req.params.join('/'),
     headers: {
       'User-Agent': 'request'
     },
