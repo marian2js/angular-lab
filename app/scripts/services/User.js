@@ -6,32 +6,7 @@ angular.module('labApp')
         restOptions = {},
         accessToken;
 
-    var createAccessToken = function (code) {
-      var defer = $q.defer();
-      var accessTokenUrl = 'http://localhost:3000/login/oauth/access_token?code=' + code;
-
-      LogService.log('Requesting an access token for the current user');
-
-      $http.post(accessTokenUrl)
-        .success(function (data, status, headers, config) {
-          var token = data.split('access_token=')[1];
-          if (token) {
-            token = token.split('&')[0];
-            this.setAccessToken(token);
-
-            LogService.log('Access token is: ' + token);
-
-            defer.resolve(token);
-          }
-          defer.reject(data);
-        }.bind(this)).error(function (data) {
-          defer.reject(data);
-        });
-
-      return defer.promise;
-    };
-
-    return {
+    var self = {
       /**
        *
        * @param {boolean} noCheck
@@ -109,4 +84,31 @@ angular.module('labApp')
         }
       }
     };
+
+    var createAccessToken = function (code) {
+      var defer = $q.defer();
+      var accessTokenUrl = 'http://localhost:3000/login/oauth/access_token?code=' + code;
+
+      LogService.log('Requesting an access token for the current user');
+
+      $http.post(accessTokenUrl)
+        .success(function (data, status, headers, config) {
+          var token = data.split('access_token=')[1];
+          if (token) {
+            token = token.split('&')[0];
+            self.setAccessToken(token);
+
+            LogService.log('Access token is: ' + token);
+
+            defer.resolve(token);
+          }
+          defer.reject(data);
+        }.bind(this)).error(function (data) {
+          defer.reject(data);
+        });
+
+      return defer.promise;
+    };
+
+    return self;
   });
