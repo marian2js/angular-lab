@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('labApp')
-  .controller('AppCtrl', function AppCtrl ($scope, GitHubService, UserFactory) {
+  .controller('AppCtrl', function AppCtrl ($scope, GitHubService, UserFactory, LogService, $translate) {
+    $scope.languages = [{
+      name: 'English',
+      key: 'en'
+    }, {
+      name: 'Español',
+      key: 'es'
+    }];
     $scope.loading = {};
 
     /**
@@ -49,7 +56,17 @@ angular.module('labApp')
       $scope.loading[key] = status;
     };
 
+    /**
+     * Set an error alert
+     *
+     * @param error
+     */
     $scope.setError = function (error) {
+      LogService.error(error);
       $scope.error = error;
+    };
+
+    $scope.setLanguage = function (key) {
+      $translate.use(key);
     };
   });

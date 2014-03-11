@@ -1,6 +1,6 @@
 <div ng-init="loadRepositories()">
   <div ng-show="user">
-    Welcome <a ng-href="{{ user.html_url }}">{{ user.name }}</a>!
+    <span translate="welcome">Welcome</span> <a ng-href="{{ user.html_url }}">{{ user.name }}</a>!
     <div class="pull-right" ng-show="repositories.length">
       <input type="text" ng-model="search.name" class="form-control" placeholder="Search...">
     </div>
@@ -8,17 +8,20 @@
   <hr>
 
   <div class="row marketing">
-    <div ng-show="loading.repos">Loading...</div>
-    <div ng-show="repositories.length">You have <strong>{{ repositories.length }}</strong> repositories starred!</div>
+    <div ng-show="loading.repos" translate="loading">Loading...</div>
+    <div ng-show="repositories.length">
+      <span translate="you_have">You have</span> <strong>{{ repositories.length }}</strong>
+      <span translate="repositories starred">repositories starred</span>!
+    </div>
     <hr/>
 
     <table class="table table-striped table-repositories" ng-show="repositories.length">
       <thead>
       <tr>
-        <th ng-click="setOrder('name')">Repository</th>
-        <th ng-click="setOrder('watchers')">Watchers</th>
-        <th ng-click="setOrder('forks')">Forks</th>
-        <th ng-click="setOrder('contributors.length')">Contributors</th>
+        <th ng-click="setOrder('name')" translate="repository">Repository</th>
+        <th ng-click="setOrder('watchers')" translate="watchers">Watchers</th>
+        <th ng-click="setOrder('forks')" translate="forks">Forks</th>
+        <th ng-click="setOrder('contributors.length')" translate="contributors">Contributors</th>
       </tr>
       </thead>
       <tbody>
@@ -29,10 +32,11 @@
         <td>{{ repo.watchers }}</td>
         <td>{{ repo.forks }}</td>
         <td>
-          {{ repo.contributors ? repo.contributors.length : 'Loading...' }}<span ng-show="repo.contributors.full">+</span>
+          <span ng-show="repo.contributors">{{ repo.contributors.length }}</span><span ng-show="repo.contributors.full">+</span>
+          <span ng-show="!repo.contributors" translate="loading">Loading...</span>
         </td>
         <td>
-          <a ng-href="/#/repo/{{ repo.owner.login }}/{{ repo.name }}">More Info</a>
+          <a ng-href="/#/repo/{{ repo.owner.login }}/{{ repo.name }}" translate="more_info">More Info</a>
         </td>
       </tr>
       </tbody>

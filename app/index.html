@@ -32,9 +32,9 @@
 
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="/">Home</a></li>
-          <li><a href="#" ng-click="login()" ng-hide="isLogged()">Login with GitHub</a></li>
-          <li><a href="#" ng-click="logout()" ng-show="isLogged()">Logout</a></li>
+          <li class="active"><a ng-href="/" translate="home">Home</a></li>
+          <li><a href="#" ng-click="login()" ng-hide="isLogged()" translate="login">Login with GitHub</a></li>
+          <li><a href="#" ng-click="logout()" ng-show="isLogged()" translate="logout">Logout</a></li>
         </ul>
         <h3 class="text-muted">GitHub Stars</h3>
       </div>
@@ -43,6 +43,12 @@
 
       <div class="footer">
         <p><a href="https://github.com/marian2js/angular-lab">GitHub Project</a></p>
+        <div class="pull-right">
+          <strong translate="languages">Languages:</strong>
+          <span ng-repeat="language in languages">
+            <a href="#" ng-click="setLanguage(language.key)">{{ language.name }}</a>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -74,6 +80,7 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

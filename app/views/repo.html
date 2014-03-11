@@ -3,17 +3,17 @@
   <h1 ng-show="repo">{{ repo.name }}</h1>
   <hr/>
   <div class="row">
-      <div ng-show="loading.lastYearActivity">Loading...</div>
+      <div ng-show="loading.lastYearActivity" translate="loading">Loading...</div>
       <div ng-if="lastYearActivity">
-        <h4>Last year of commit activity per week</h4>
+        <h4 translate="last_year_commits">Last year of commit activity per week</h4>
         <div d3-bars data="lastYearActivity" height="300"></div>
       </div>
   </div>
   <hr/>
   <div class="row">
-    <div ng-show="loading.codeFrequency">Loading...</div>
+    <div ng-show="loading.codeFrequency" translate="loading">Loading...</div>
     <div ng-if="codeFrequency">
-      <h4>Number of additions and deletions per week</h4>
+      <h4 translate="number_of_additions_deletions">Number of additions and deletions per week</h4>
       <div d3-bars data="codeFrequency" height="300"></div>
     </div>
   </div>

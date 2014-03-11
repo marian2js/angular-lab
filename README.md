@@ -50,7 +50,7 @@ Source: https://github.com/angular/protractor
 5. ~~Add a search feature, filter results based on the search string.~~
 6. ~~Add graphics to present statistical data per repository.~~
 7. ~~Implement navigation using the angular router (angular-route).~~
-8. Add internationalization support to the application developed in the previous step.
+8. ~~Add internationalization support to the application developed in the previous step.~~
 9. ~~Refactor your application so all repository data is rendered using one or more custom directives.~~
 10. ~~Create a logging service. Log all relevant user actions.~~
 11. Implement offline support, so the user can see her repositories even if she doesn't have connectivity.
