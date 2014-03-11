@@ -54,8 +54,8 @@ Source: https://github.com/angular/protractor
 9. ~~Refactor your application so all repository data is rendered using one or more custom directives.~~
 10. ~~Create a logging service. Log all relevant user actions.~~
 11. Implement offline support, so the user can see her repositories even if she doesn't have connectivity.
-12. Allow the user to unstar a repository. The repository must fade out from the list.
-13. Add Google Analytics support.
+12. ~~Allow the user to unstar a repository. The repository must fade out from the list.~~
+13. ~~Add Google Analytics support.~~
 
 _Application must include unit, and E2E tests._
  
