@@ -38,6 +38,9 @@
         <td>
           <a ng-href="/#/repo/{{ repo.owner.login }}/{{ repo.name }}" translate="more_info">More Info</a>
         </td>
+        <td>
+          <a ng-click="unstar(repo)" class="btn btn-danger" translate="unstar">Unstar</a>
+        </td>
       </tr>
       </tbody>
     </table>

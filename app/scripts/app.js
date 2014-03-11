@@ -42,7 +42,8 @@ angular.module('labApp', [
       number_of_additions_deletions: 'Number of additions and deletions per week',
       languages: 'Languages',
       you_have: 'You have',
-      repositories_starred: 'repositories starred'
+      repositories_starred: 'repositories starred',
+      unstar: 'Unstar'
     });
     $translateProvider.translations('es', {
       home: 'Inicio',
@@ -59,7 +60,8 @@ angular.module('labApp', [
       number_of_additions_deletions: 'Numero de lineas agregadas y eliminadas por semana',
       languages: 'Idiomas',
       you_have: 'Usted tiene',
-      repositories_starred: 'repositorios en favoritos'
+      repositories_starred: 'repositorios en favoritos',
+      unstar: 'Eliminar'
     });
     $translateProvider.preferredLanguage('en');
   });

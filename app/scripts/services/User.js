@@ -43,6 +43,20 @@ angular.module('labApp')
 
       /**
        *
+       * @returns {Promise}
+       */
+      deleteStarred: function (owner, name) {
+        LogService.log('Removing starred repository');
+        return Restangular
+          .one(entity)
+          .one('starred')
+          .one(owner)
+          .one(name)
+          .remove(restOptions);
+      },
+
+      /**
+       *
        * @returns {boolean}
        */
       isLogged: function () {

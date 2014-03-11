@@ -53,4 +53,13 @@ angular.module('labApp')
         $scope.reverse = !$scope.reverse;
       }
     };
+    
+    $scope.unstar = function (repo) {
+      for (var i = 0; i < $scope.repositories.length; i++) {
+        if ($scope.repositories[i].id === repo.id) {
+          $scope.repositories.splice(i, 1);
+        }
+      }
+      UserFactory.deleteStarred(repo.owner.login, repo.name);
+    };
   });
