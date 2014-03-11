@@ -2,6 +2,7 @@
 
 angular.module('labApp')
   .controller('AppCtrl', function AppCtrl ($scope, GitHubService, UserFactory) {
+    $scope.loading = {};
 
     /**
      * Initialize the controller
@@ -30,7 +31,25 @@ angular.module('labApp')
       UserFactory.removeAccessToken();
     };
 
+    /**
+     * Check if the user is logged
+     *
+     * @returns {boolean}
+     */
     $scope.isLogged = function () {
       return UserFactory.isLogged();
+    };
+
+    /**
+     *
+     * @param {string} key
+     * @param {boolean} status
+     */
+    $scope.setLoading = function (key, status) {
+      $scope.loading[key] = status;
+    };
+
+    $scope.setError = function (error) {
+      $scope.error = error;
     };
   });

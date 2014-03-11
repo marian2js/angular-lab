@@ -43,6 +43,11 @@ angular.module('labApp')
         return defer.promise;
       },
 
+      getStarred: function () {
+        LogService.log('Requesting starred repositories');
+        return Restangular.one(entity).getList('starred', restOptions);
+      },
+
       isLogged: function () {
         return !!getAccessToken();
       },
