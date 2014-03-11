@@ -1,7 +1,20 @@
 'use strict';
 
 angular.module('labApp')
-  .controller('AppCtrl', function ($scope, GitHubService) {
+  .controller('AppCtrl', function AppCtrl ($scope, GitHubService, UserFactory) {
+
+    /**
+     * Initialize the controller
+     * 
+     * Check if the user is just logged in
+     */
+    $scope.init = function () {
+      UserFactory.get()
+        .then(function (user) {
+          $scope.user = user;
+          console.log(user);
+        });
+    };
 
     /**
      * Process the User Login
@@ -14,16 +27,10 @@ angular.module('labApp')
      * Process the User Logout
      */
     $scope.logout = function () {
-      GitHubService.logout();
-      window.location = '/';
+      UserFactory.removeAccessToken();
     };
 
-    /**
-     * Check if the user is logged
-     *
-     * @returns {boolean}
-     */
     $scope.isLogged = function () {
-      return GitHubService.isLogged();
+      return UserFactory.isLogged();
     };
   });

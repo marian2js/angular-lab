@@ -3,7 +3,8 @@
 angular.module('labApp', [
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'restangular'
 ])
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:3000/api');
