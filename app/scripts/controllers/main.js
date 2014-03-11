@@ -3,6 +3,8 @@
 angular.module('labApp')
   .controller('MainCtrl', function MainCtrl ($scope, UserFactory, RepositoryFactory, LogService) {
     $scope.repositories = [];
+    $scope.order = 'name';
+    $scope.reverse = false;
 
     /**
      * Load the stats for a repo
@@ -40,5 +42,15 @@ angular.module('labApp')
         }, function (err) {
           $scope.setError(err);
         });
+    };
+
+    $scope.setOrder = function (order) {
+      if ($scope.order !== order) {
+        $scope.reverse = false;
+        $scope.order = order;
+      }
+      else {
+        $scope.reverse = !$scope.reverse;
+      }
     };
   });
