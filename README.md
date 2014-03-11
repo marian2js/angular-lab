@@ -43,16 +43,16 @@ Requires a webserver, node.js + ./scripts/web-server.js or your backend server t
 Source: https://github.com/angular/protractor
 
 ## Exercises
-1. Complete Angular's official tutorial: http://docs.angularjs.org/tutorial
-2. Create an application that list all the starred repositories a GitHub user has. The application must list all starred repos.
-3. The application must authenticate the user.
-4. Allow the user to sort her repositories using different statistics (http://developer.github.com/v3/repos/statistics/).
-5. Add a search feature, filter results based on the search string.
-6. Add graphics to present statistical data per repository.
-7. Implement navigation using the angular router (angular-route).
+1. ~~Complete Angular's official tutorial: http://docs.angularjs.org/tutorial~~
+2. ~~Create an application that list all the starred repositories a GitHub user has. The application must list all starred repos.~~
+3. ~~The application must authenticate the user.~~
+4. ~~Allow the user to sort her repositories using different statistics (http://developer.github.com/v3/repos/statistics/).~~
+5. ~~Add a search feature, filter results based on the search string.~~
+6. ~~Add graphics to present statistical data per repository.~~
+7. ~~Implement navigation using the angular router (angular-route).~~
 8. Add internationalization support to the application developed in the previous step.
-9. Refactor your application so all repository data is rendered using one or more custom directives.
-10. Create a logging service. Log all relevant user actions.
+9. ~~Refactor your application so all repository data is rendered using one or more custom directives.~~
+10. ~~Create a logging service. Log all relevant user actions.~~
 11. Implement offline support, so the user can see her repositories even if she doesn't have connectivity.
 12. Allow the user to unstar a repository. The repository must fade out from the list.
 13. Add Google Analytics support.
