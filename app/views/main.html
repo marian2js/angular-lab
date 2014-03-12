@@ -7,7 +7,13 @@
   </div>
   <hr>
 
-  <div class="row marketing">
+  <div class="text-center" ng-hide="isLogged() || loading.user">
+    <h4 translate="login_github_message">Login with GitHub to see your starred repos!</h4>
+    <a href="#" ng-click="login()"><img src="/images/github.png" alt="GitHub"/></a>
+  </div>
+  <div ng-show="loading.user" translate="loading">Loading...</div>
+
+  <div class="row" ng-show="isLogged()">
     <div ng-show="loading.repos" translate="loading">Loading...</div>
     <div ng-show="repositories.length">
       <span translate="you_have">You have</span> <strong>{{ repositories.length }}</strong>

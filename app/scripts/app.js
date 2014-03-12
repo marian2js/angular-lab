@@ -12,13 +12,17 @@ angular.module('labApp', [
     RestangularProvider.setDefaultHttpFields({ cache: true });
   })
   .config(function ($routeProvider) {
+    var templateUrl = function templateUrl (name) {
+      return 'views/' + name + '.html';
+    };
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: templateUrl('main'),
         controller: 'MainCtrl'
       })
       .when('/repo/:owner/:name', {
-        templateUrl: 'views/repo.html',
+        templateUrl: templateUrl('repo'),
         controller: 'RepoCtrl'
       })
       .otherwise({
@@ -43,7 +47,8 @@ angular.module('labApp', [
       languages: 'Languages',
       you_have: 'You have',
       repositories_starred: 'repositories starred',
-      unstar: 'Unstar'
+      unstar: 'Unstar',
+      login_github_message: 'Login with GitHub to see your starred repos!'
     });
     $translateProvider.translations('es', {
       home: 'Inicio',
@@ -61,7 +66,8 @@ angular.module('labApp', [
       languages: 'Idiomas',
       you_have: 'Usted tiene',
       repositories_starred: 'repositorios en favoritos',
-      unstar: 'Eliminar'
+      unstar: 'Eliminar',
+      login_github_message: 'Entra con GitHub para ver tus repositorios en favoritos'
     });
     $translateProvider.preferredLanguage('en');
   });

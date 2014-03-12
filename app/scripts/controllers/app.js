@@ -17,10 +17,14 @@ angular.module('labApp')
      * Check if the user is just logged in
      */
     $scope.init = function () {
+      $scope.setLoading('user', true);
       UserFactory.get()
         .then(function (user) {
           $scope.user = user;
-          console.log(user);
+        }).catch(function (err) {
+          $scope.setError(err);
+        }).finally(function () {
+          $scope.setLoading('user', false);
         });
     };
 
@@ -62,10 +66,18 @@ angular.module('labApp')
      * @param error
      */
     $scope.setError = function (error) {
+      if (!error) {
+        return;
+      }
       LogService.error(error);
       $scope.error = error;
     };
 
+    /**
+     * Set a new language to display the app
+     *
+     * @param {String} key
+     */
     $scope.setLanguage = function (key) {
       $translate.use(key);
     };
