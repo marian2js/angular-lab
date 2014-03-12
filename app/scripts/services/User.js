@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('labApp')
-  .factory('UserFactory', function UserFactory (LogService, GitHubService, Restangular, $http, $q) {
+  .factory('UserFactory', function UserFactory (LogService, GitHubService, Restangular, $http, $q, $location) {
     var entity = 'user',
         restOptions = {},
         accessToken;
@@ -17,6 +17,7 @@ angular.module('labApp')
         if (!noCheck && code) {
           return createAccessToken(code)
             .then(function () {
+              $location.path('/#/');
               return this.get(true);
             }.bind(this));
         }
