@@ -1,5 +1,14 @@
 Angular Lab
 ===========
+## How to Run the app
+
+Install the app dependencies:
+    $ npm install
+    $ bower install
+
+Run the app:
+    $ node app
+
 ## Target Audience
 This lab targets Web UI developers regardless of their current seniority. However, is expected a basic knowledge on web technologies such as HTML, CSS, and an intermediate knowledge on JavaScript.
 This lab is not a tutorial, its goal is not to teach Angular.js but to provide problems to exercise key Angular.js concepts, and best practices.
