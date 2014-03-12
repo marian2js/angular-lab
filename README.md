@@ -3,10 +3,12 @@ Angular Lab
 ## How to Run the app
 
 Install the app dependencies:
+
     $ npm install
     $ bower install
 
 Run the app:
+
     $ node app
 
 ## Target Audience
