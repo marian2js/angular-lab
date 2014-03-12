@@ -42,9 +42,11 @@
       <div ng-view></div>
 
       <div class="footer">
-        <p><a href="https://github.com/marian2js/angular-lab">GitHub Project</a></p>
+        <div class="pull-left">
+          <a href="https://github.com/marian2js/angular-lab">GitHub Project</a>
+        </div>
         <div class="pull-right">
-          <strong translate="languages">Languages:</strong>
+          <strong translate="languages">Languages</strong>:
           <span ng-repeat="language in languages">
             <a href="#" ng-click="setLanguage(language.key)">{{ language.name }}</a>
           </span>
@@ -79,8 +81,8 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
-    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
