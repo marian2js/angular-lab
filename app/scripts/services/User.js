@@ -102,7 +102,7 @@ angular.module('labApp')
 
     var createAccessToken = function (code) {
       var defer = $q.defer();
-      var accessTokenUrl = 'http://localhost:3000/login/oauth/access_token?code=' + code;
+      var accessTokenUrl = '/login/oauth/access_token?code=' + code;
 
       LogService.log('Requesting an access token for the current user');
 

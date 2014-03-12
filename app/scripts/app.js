@@ -8,7 +8,7 @@ angular.module('labApp', [
   'pascalprecht.translate'
 ])
   .config(function (RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:3000/api');
+    RestangularProvider.setBaseUrl('/api');
     RestangularProvider.setDefaultHttpFields({ cache: true });
   })
   .config(function ($routeProvider) {
