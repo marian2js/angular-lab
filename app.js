@@ -7,6 +7,7 @@ var app = express();
 var config = JSON.parse(fs.readFileSync('config.json'));
 
 app.use(express.logger());
+app.use(express.static(__dirname + '/app'));
 
 // Cross-origin resource sharing //
 app.use(function (req, res, next) {
@@ -14,6 +15,10 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
   res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
   next();
+});
+
+app.get('/', function (req, res) {
+  res.send('index.html');
 });
 
 app.all('/api/*', function(req, res) {
