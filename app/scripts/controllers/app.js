@@ -40,6 +40,7 @@ angular.module('labApp')
      */
     $scope.logout = function () {
       UserFactory.removeAccessToken();
+      $scope.user = null;
     };
 
     /**
@@ -63,7 +64,7 @@ angular.module('labApp')
     /**
      * Set an error alert
      *
-     * @param error
+     * @param {string} error
      */
     $scope.setError = function (error) {
       if (!error) {
@@ -76,7 +77,7 @@ angular.module('labApp')
     /**
      * Set a new language to display the app
      *
-     * @param {String} key
+     * @param {string} key
      */
     $scope.setLanguage = function (key) {
       $translate.use(key);
