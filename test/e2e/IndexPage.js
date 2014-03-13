@@ -1,5 +1,7 @@
 'use strict';
 
+var Q = require('q');
+
 /**
  * Index Page Object
  *
@@ -10,6 +12,8 @@ function IndexPage () {
   var loginButton = browser.element(by.id('loginButton'));
   var userName = element(by.binding('user.name'));
   var repositoriesLength = element(by.binding('repositories.length'));
+  var search = browser.element(by.tagName('input'));
+  var repositoryTitle = browser.element(by.tagName('th'));
 
   /**
    * Open Index page
@@ -69,6 +73,35 @@ function IndexPage () {
    */
   this.getRepositoriesLength = function () {
     return repositoriesLength.getText();
+  };
+
+  /**
+   * Returns the rows with the repos
+   *
+   * @returns {Promise}
+   */
+  this.getRepos = function () {
+    var defer = Q.defer();
+    browser.findElements(by.tagName('tr')).then(function (rows) {
+      // the first row is the titles row
+      rows.shift();
+
+      defer.resolve(rows);
+    });
+    return defer.promise;
+  };
+
+  /**
+   * Insert a text in search input
+   *
+   * @param {string} text
+   */
+  this.search = function (text) {
+    search.sendKeys(text);
+  };
+
+  this.clickRepositoryTitle = function () {
+    repositoryTitle.click();
   };
 }
 
