@@ -9,11 +9,16 @@ function GitHubPage () {
   var fakeUser = {
     username: 'fakeuser123',
     password: 'fakepass987',
-    name: 'Fake User 123'
+    name: 'Fake User 123',
+    repositories: [
+      'angular.js',
+      'protractor'
+    ]
   };
   var loginField = browser.element(by.id('login_field'));
   var passwordField = browser.element(by.id('password'));
   var submitButton = browser.element(by.name('commit'));
+  var isLogged = false;
 
   /**
    * Returns data of the fake user
@@ -25,24 +30,16 @@ function GitHubPage () {
   };
 
   /**
-   * Insert username in GitHub
+   * Login into GitHub
    */
-  this.completeLogin = function () {
+  this.login = function () {
+    if (isLogged) {
+      return;
+    }
     loginField.sendKeys(fakeUser.username);
-  };
-
-  /**
-   * Insert password in GitHub
-   */
-  this.completePassword = function () {
     passwordField.sendKeys(fakeUser.password);
-  };
-
-  /**
-   * Submit the form
-   */
-  this.clickSubmit = function () {
     submitButton.click();
+    isLogged = true;
   };
 }
 

@@ -9,6 +9,7 @@ function IndexPage () {
   var body = browser.element(by.tagName('body'));
   var loginButton = browser.element(by.id('loginButton'));
   var userName = element(by.binding('user.name'));
+  var repositoriesLength = element(by.binding('repositories.length'));
 
   /**
    * Open Index page
@@ -59,6 +60,15 @@ function IndexPage () {
    */
   this.getUserName = function () {
     return userName.getText();
+  };
+
+  /**
+   * Returns the total of repositories
+   *
+   * @returns {string}
+   */
+  this.getRepositoriesLength = function () {
+    return repositoriesLength.getText();
   };
 }
 
