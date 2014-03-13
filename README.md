@@ -11,6 +11,25 @@ Run the app:
 
     $ node app
 
+Go to http://127.0.0.1:3000
+
+For development also run:
+
+    $ grunt serve
+
+Go to http://127.0.0.1:9000
+You will have live reload enabled.
+
+## How to Run the tests
+
+Unit Tests:
+
+    $ grunt test
+
+E2E Tests:
+
+    $ protractor protractor.conf.js
+
 ## Target Audience
 This lab targets Web UI developers regardless of their current seniority. However, is expected a basic knowledge on web technologies such as HTML, CSS, and an intermediate knowledge on JavaScript.
 This lab is not a tutorial, its goal is not to teach Angular.js but to provide problems to exercise key Angular.js concepts, and best practices.
