@@ -30,6 +30,16 @@ app.all('/login/*', function (req, res) {
 });
 
 /**
+ * Ensure Content-Type "text/cache-manifest" to cache manifest
+ */
+app.get('/app.manifest', function (req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'text/cache-manifest'
+  });
+  res.send('app.manifest');
+});
+
+/**
  * Create a proxy for all urls of the GitHub Api injecting our client id and client secret
  *
  * @param req
