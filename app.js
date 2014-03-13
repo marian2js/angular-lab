@@ -6,6 +6,13 @@ var _ = require('underscore');
 var app = express();
 var config = JSON.parse(fs.readFileSync('config.json'));
 
+// Config a proxy
+if (config.proxy) {
+  request = request.defaults({
+    'proxy': config.proxy
+  });
+}
+
 app.use(express.logger());
 app.use(express.static(__dirname + '/app'));
 

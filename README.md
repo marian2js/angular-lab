@@ -30,6 +30,10 @@ E2E Tests:
 
     $ protractor protractor.conf.js
 
+## Config proxy
+
+Open `config.json` and add your proxy on `proxy` key, i.e.: `"proxy": "http://your.proxy.com:1234"`
+
 ## Target Audience
 This lab targets Web UI developers regardless of their current seniority. However, is expected a basic knowledge on web technologies such as HTML, CSS, and an intermediate knowledge on JavaScript.
 This lab is not a tutorial, its goal is not to teach Angular.js but to provide problems to exercise key Angular.js concepts, and best practices.
@@ -83,7 +87,7 @@ Source: https://github.com/angular/protractor
 8. ~~Add internationalization support to the application developed in the previous step.~~
 9. ~~Refactor your application so all repository data is rendered using one or more custom directives.~~
 10. ~~Create a logging service. Log all relevant user actions.~~
-11. Implement offline support, so the user can see her repositories even if she doesn't have connectivity.
+11. ~~Implement offline support, so the user can see her repositories even if she doesn't have connectivity.~~
 12. ~~Allow the user to unstar a repository. The repository must fade out from the list.~~
 13. ~~Add Google Analytics support.~~
 
