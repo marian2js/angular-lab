@@ -7,12 +7,16 @@ angular.module('labApp')
       scope: {
         data: '&',
         width: '@',
-        height: '@'
+        height: '@',
+        colorFrom: '@',
+        colorTo: '@'
       },
       link: function(scope, elem) {
         var container = d3.select(elem[0]),
             data = scope.data() || [],
-            svg = container.append('svg');
+            svg = container.append('svg'),
+            colorFrom = scope.colorFrom || 'green',
+            colorTo = scope.colorTo || '#428bca';
 
         // Browser onresize event
         window.onresize = function() {
@@ -37,31 +41,33 @@ angular.module('labApp')
           // clear previous renders
           svg.selectAll('*').remove();
 
-          // Scale x depending the value
+          // Scale x according the number of values
           var xScale = d3.scale.ordinal()
             .domain(data)
-            .rangeBands([0, width], 0.1, 0.3);
+            .rangeBands([0, width], 0.1, 0);
 
           // Scale y proportional to the max value
           var yScale = d3.scale.linear()
             .domain([0, d3.max(data)])
             .range([0, height]);
 
+          // Set a scale of colors
+          var colorScale = d3.scale.linear()
+            .domain([0, d3.max(data)])
+            .range([colorFrom, colorTo]);
+
           svg.selectAll('rect')
             .data(data)
             .enter()
             .append('rect')
             .attr('class', 'bar')
-            .attr('x', function (d, i) {
-              return xScale(d);
-            })
+            .attr('x', xScale)
             .attr('y', function (d) {
               return height - yScale(d);
             })
             .attr('width', xScale.rangeBand())
-            .attr('height', function (d) {
-              return yScale(d);
-            });
+            .attr('height', yScale)
+            .attr('fill', colorScale);
         }
     }};
   });
