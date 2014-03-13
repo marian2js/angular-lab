@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>GitHub Stars</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -33,7 +33,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ng-href="/" translate="home">Home</a></li>
-          <li><a href="#" ng-click="login()" ng-hide="isLogged()" translate="login">Login with GitHub</a></li>
+          <li><a href="#" id="loginButton" ng-click="login()" ng-hide="isLogged()" translate="login">Login with GitHub</a></li>
           <li><a href="#" ng-click="logout()" ng-show="isLogged()" translate="logout">Logout</a></li>
         </ul>
         <h3 class="text-muted">GitHub Stars</h3>
