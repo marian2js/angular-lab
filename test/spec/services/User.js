@@ -2,8 +2,8 @@
 
 describe('Factory: User', function () {
   var fakeAccessToken = 'This_is_a_fake_access_token';
-  var getUrl = 'http://localhost:3000/api/user?access_token=' + fakeAccessToken;
-  var getStarred = 'http://localhost:3000/api/user/starred?access_token=' + fakeAccessToken;
+  var getUrl = '/api/user?access_token=' + fakeAccessToken;
+  var getStarred = '/api/user/starred?access_token=' + fakeAccessToken;
 
   var UserFactory,
     httpBackend;

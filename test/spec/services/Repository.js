@@ -3,10 +3,10 @@
 describe('Factory: Repository', function () {
   var repoOwner = 'angular';
   var repoName = 'angular.js';
-  var getUrl = 'http://localhost:3000/api/repos/' + repoOwner + '/' + repoName;
-  var getStatsContributors = 'http://localhost:3000/api/repos/' + repoOwner + '/' + repoName + '/stats/contributors';
-  var getStatsCommitActivity = 'http://localhost:3000/api/repos/' + repoOwner + '/' + repoName + '/stats/commit_activity';
-  var getStatsCodeFrequency = 'http://localhost:3000/api/repos/' + repoOwner + '/' + repoName + '/stats/code_frequency';
+  var getUrl = '/api/repos/' + repoOwner + '/' + repoName;
+  var getStatsContributors = '/api/repos/' + repoOwner + '/' + repoName + '/stats/contributors';
+  var getStatsCommitActivity = '/api/repos/' + repoOwner + '/' + repoName + '/stats/commit_activity';
+  var getStatsCodeFrequency = '/api/repos/' + repoOwner + '/' + repoName + '/stats/code_frequency';
 
   var RepositoryFactory,
       httpBackend,
