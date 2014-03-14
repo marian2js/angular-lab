@@ -1,19 +1,27 @@
 'use strict';
 
 angular.module('labApp')
-  .factory('UserFactory', function UserFactory (LogService, GitHubService, Restangular, $http, $q, $location) {
+  .factory('UserFactory', function UserFactory (LogService, GitHubService, StorageService, Restangular, $http, $q, $location) {
     var entity = 'user',
-        restOptions = {},
-        accessToken;
+        storeKey = {
+          user: 'USER',
+          repos: 'REPOS',
+          accessToken: 'ACCESS_TOKEN'
+        },
+        restOptions = {};
 
     var self = {
+
       /**
+       * Promise the user data
        *
        * @param {boolean} noCheck
        * @returns {Promise}
        */
       get: function (noCheck) {
-        var code = GitHubService.getTemporalCode();
+        var defer = $q.defer(),
+            code = GitHubService.getTemporalCode();
+
         if (!noCheck && code) {
           return createAccessToken(code)
             .then(function () {
@@ -24,25 +32,55 @@ angular.module('labApp')
 
         if (this.isLogged()) {
           LogService.log('Requesting user data');
-          return Restangular.one(entity).get(restOptions);
+
+          Restangular.one(entity).get(restOptions)
+            .then(function (user) {
+              StorageService.set(storeKey.user, user);
+              defer.resolve(user);
+            })
+            // if there is an error, but data is cached, resolve with cached data
+            .catch(function (err) {
+              if (StorageService.contains(storeKey.user)) {
+                defer.resolve(StorageService.get(storeKey.user));
+              } else {
+                defer.reject(err);
+              }
+            });
+        } else {
+          defer.reject(null);
         }
 
-        // If the user is not correctly logged
-        var defer = $q.defer();
-        defer.reject(null);
         return defer.promise;
       },
 
       /**
+       * Promise the starred repositories
        *
        * @returns {Promise}
        */
       getStarred: function () {
+        var defer = $q.defer();
+
         LogService.log('Requesting starred repositories');
-        return Restangular.one(entity).getList('starred', restOptions);
+
+        Restangular.one(entity).getList('starred', restOptions)
+          .then(function (repos) {
+            StorageService.set(storeKey.repos, repos);
+            defer.resolve(repos);
+          })
+          // if there is an error, but data is cached, resolve with cached data
+          .catch(function (err) {
+            if (StorageService.contains(storeKey.repos)) {
+              defer.resolve(StorageService.get(storeKey.repos));
+            } else {
+              defer.reject(err);
+            }
+          });
+        return defer.promise;
       },
 
       /**
+       * Unstar a repository
        *
        * @returns {Promise}
        */
@@ -57,6 +95,7 @@ angular.module('labApp')
       },
 
       /**
+       * Check if there is a user logged in
        *
        * @returns {boolean}
        */
@@ -65,38 +104,40 @@ angular.module('labApp')
       },
 
       /**
+       * Returns the access token of the current user
        *
        * @returns {string}
        */
       getAccessToken: function () {
-        if (typeof Storage !== 'undefined') {
-          accessToken = localStorage.accessToken;
-          restOptions.access_token = accessToken;
-        }
+        var accessToken = StorageService.get(storeKey.accessToken);
+        restOptions.access_token = accessToken;
         return accessToken;
       },
 
       /**
+       * Set a new access token
        *
-       * @param {string} token
+       * @param {string} accessToken
        */
-      setAccessToken: function (token) {
-        accessToken = token;
-        restOptions.access_token = token;
-        if (typeof Storage !== 'undefined') {
-          localStorage.accessToken = token;
-        }
+      setAccessToken: function (accessToken) {
+        restOptions.access_token = accessToken;
+        StorageService.set(storeKey.accessToken, accessToken);
       },
 
+      /**
+       * Returns the options to connect the current user with GitHub Api
+       *
+       * @returns {*}
+       */
       getRestOptions: function () {
         return restOptions;
       },
 
-      removeAccessToken: function () {
-        accessToken = undefined;
-        if (typeof Storage !== 'undefined') {
-          delete localStorage.accessToken;
-        }
+      /**
+       * Logout the current user and remove all stored data
+       */
+      logout: function () {
+        StorageService.clear();
       }
     };
 

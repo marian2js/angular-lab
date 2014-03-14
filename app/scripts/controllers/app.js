@@ -39,7 +39,7 @@ angular.module('labApp')
      * Process the User Logout
      */
     $scope.logout = function () {
-      UserFactory.removeAccessToken();
+      UserFactory.logout();
       $scope.user = null;
     };
 
