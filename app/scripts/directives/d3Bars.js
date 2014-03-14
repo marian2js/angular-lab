@@ -9,14 +9,17 @@ angular.module('labApp')
         width: '@',
         height: '@',
         colorFrom: '@',
-        colorTo: '@'
+        colorTo: '@',
+        showLabels: '@'
       },
       link: function(scope, elem) {
         var container = d3.select(elem[0]),
             data = scope.data() || [],
             svg = container.append('svg'),
             colorFrom = scope.colorFrom || 'green',
-            colorTo = scope.colorTo || '#428bca';
+            colorTo = scope.colorTo || '#428bca',
+            showLabels = scope.showLabels === "true",
+            max = d3.max(data);
 
         // Browser onresize event
         window.onresize = function() {
@@ -30,6 +33,12 @@ angular.module('labApp')
           scope.render(svg, data);
         });
 
+        /**
+         * Render the chart
+         *
+         * @param svg
+         * @param {Array} data
+         */
         scope.render = function(svg, data) {
           var width = scope.width || container.node().offsetWidth,
               height = scope.height || 400;
@@ -48,12 +57,12 @@ angular.module('labApp')
 
           // Scale y proportional to the max value
           var yScale = d3.scale.linear()
-            .domain([0, d3.max(data)])
+            .domain([0, max])
             .range([0, height]);
 
           // Set a scale of colors
           var colorScale = d3.scale.linear()
-            .domain([0, d3.max(data)])
+            .domain([0, max])
             .range([colorFrom, colorTo]);
 
           svg.selectAll('rect')
@@ -67,7 +76,32 @@ angular.module('labApp')
             })
             .attr('width', xScale.rangeBand())
             .attr('height', yScale)
-            .attr('fill', colorScale);
-        }
+            .attr('fill', colorScale)
+
+            // Mouse over effect
+            .on('mouseover', function () {
+              d3.select(this)
+                .style('fill', 'blue')
+            })
+            .on('mouseout', function () {
+              d3.select(this)
+                .style('fill', colorScale)
+            });
+
+          // Add text labels
+          if (showLabels) {
+            svg.selectAll('text')
+              .data(data)
+              .enter()
+              .append('text')
+              .text(function(d) {
+                return d;
+              })
+              .attr('x', xScale)
+              .attr('y', function(d) {
+                return height - 5;
+              });
+          }
+        };
     }};
   });
